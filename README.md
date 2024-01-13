@@ -1,2 +1,2 @@
-# blossom
+# Blossom
 Lightweight UI Framework
