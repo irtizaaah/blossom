@@ -19,7 +19,7 @@ export class Blossom {
   }
 
   render(build) {
-    this.setBuild(build);
+    this.build(build);
     this.update();
   }
 }
