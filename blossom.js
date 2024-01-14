@@ -18,8 +18,8 @@ export class Blossom {
     document.body.appendChild(this.build());
   }
 
-  render(build) {
-    this.build(build);
+  render(components) {
+    this.build(components);
     this.update();
   }
 }
