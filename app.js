@@ -1,12 +1,19 @@
-import {h1, div, p} from './tagFunctions.js'
-import {Blossom, State} from './blossom.js'
+import {h1, h2, div, p, textField} from './blossom/tags.js'
+import {Blossom, State} from './blossom/blossom.js'
 
 const blossom = new Blossom();
-let counter = new State(0);
 
 const styles = {
-    horizontalBlock: {
+    vertical: {
+        'display':'flex',
+        'flex-direction':'column'
+    },
+    horizontal: {
         'display':'flex'
+    },
+    center: {
+        'justify-content':'space-between',
+        'align-items':'center',
     },
     button: {
         'text-align':'center',
@@ -24,21 +31,30 @@ const styles = {
     }
 }
 
+
+let counter = new State(0);
+let name = new State("")
+
 const customButton = (text, handleClick) => {
     return div(p(text))
         .setStyles(styles.button)
         .setEvents('click', () => handleClick())
 }
 
+const handleChange = (name, event) => name.setState(event.target.value);
+
 const app = () => {
   return div(
-    h1(counter.getState())
+    textField(name.getState(),'text', 'Enter name...','textfield')
+        .setEvents('change', (event)=>handleChange(name, event)),
+    h1(name.getState() + " counted:"),
+    h2(counter.getState())
         .setStyles(counter.getState() < 0 ? styles.negativeCounter:styles.positiveCounter),
     div(
         customButton("decrement", ()=>counter.setState(counter.getState() - 1)),
         customButton("increment", ()=>counter.setState(counter.getState() + 1))
-    ).setStyles(styles.horizontalBlock)
-  );
+    ).setStyles(styles.horizontal)
+  ).setStyles(styles.vertical, styles.center);
 };
 
 blossom.render(app);

@@ -23,12 +23,17 @@ function createElement(tag, ...innerHTML){
         }
         return this; // Return the element for method chaining
     };
-    element.setStyles = function(styles) {
-        if (styles && typeof styles === 'object') {
-            Object.assign(this.style, styles);
-        }
-        return this; // Return the element for method chaining
-    };
+    element.setStyles = function(...styles) {
+      if (styles.length > 0) {
+          styles.forEach(style => {
+              if (style && typeof style === 'object') {
+                  Object.assign(this.style, style);
+              }
+          });
+      }
+      return this; // Return the element for method chaining
+  };
+  
 
     if(innerHTML.length === 1 && (typeof innerHTML[0] == "string" || typeof innerHTML[0] == "number")){
       element.innerHTML = innerHTML[0];
@@ -94,4 +99,14 @@ export function p(text){
 
 export function button(text){
   return createElement("button", text);
+}
+
+export function textField(value, type, placeholder, name) {
+  let elem = createElement("input");
+  elem.type = type;
+  elem.placeholder = placeholder;
+  elem.name = name;
+  elem.value = value;
+
+  return elem;
 }
