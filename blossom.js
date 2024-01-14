@@ -15,7 +15,7 @@ export class Blossom {
 
   update() {
     document.body.innerHTML = "";
-    document.body.appendChild(this.build());
+    document.body.appendChild(this.components());
   }
 
   render(components) {
