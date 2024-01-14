@@ -101,7 +101,7 @@ export function button(text){
   return createElement("button", text);
 }
 
-export function textField(value, type, placeholder, name) {
+export function textField(value, type="text", placeholder="", name="text field") {
   let elem = createElement("input");
   elem.type = type;
   elem.placeholder = placeholder;

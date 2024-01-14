@@ -1,5 +1,5 @@
-import {h1, h2, div, p, textField} from './blossom/tags.js'
-import {Blossom, State} from './blossom/blossom.js'
+import {h1, h2, div, p, textField} from './tags.js'
+import {Blossom, State} from './blossom.js'
 
 const blossom = new Blossom();
 
@@ -32,7 +32,7 @@ const styles = {
 }
 
 
-let counter = new State(0);
+let counter = new State(0); 
 let name = new State("")
 
 const customButton = (text, handleClick) => {
@@ -45,15 +45,19 @@ const handleChange = (name, event) => name.setState(event.target.value);
 
 const app = () => {
   return div(
-    textField(name.getState(),'text', 'Enter name...','textfield')
+    textField(name.getState())
         .setEvents('change', (event)=>handleChange(name, event)),
+
     h1(name.getState() + " counted:"),
+
     h2(counter.getState())
         .setStyles(counter.getState() < 0 ? styles.negativeCounter:styles.positiveCounter),
+
     div(
         customButton("decrement", ()=>counter.setState(counter.getState() - 1)),
         customButton("increment", ()=>counter.setState(counter.getState() + 1))
     ).setStyles(styles.horizontal)
+
   ).setStyles(styles.vertical, styles.center);
 };
 
