@@ -2,15 +2,15 @@ export class Blossom {
   constructor() {
     if (!Blossom.instance) {
       this.document = document;
-      this.build = () => {};
+      this.components = () => {};
       Blossom.instance = this;
     }
 
     return Blossom.instance;
   }
 
-  setBuild(build) {
-    this.build = build;
+  build(components) {
+    this.components = components;
   }
 
   update() {
